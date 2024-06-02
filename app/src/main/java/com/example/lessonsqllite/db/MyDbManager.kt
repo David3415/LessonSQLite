@@ -5,10 +5,10 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 
 class MyDbManager(context: Context) {
-    val myDBHelper = MyDBHelper(context)
+    val myDbHelper = MyDbHelper(context)
     var db: SQLiteDatabase? = null
-    fun openDB() {
-        db = myDBHelper.writableDatabase
+    fun openDb() {
+        db = myDbHelper.writableDatabase
     }
 
     fun insertToDb(title: String, content: String) {
@@ -26,6 +26,7 @@ class MyDbManager(context: Context) {
         with(cursor){
             while(this?.moveToNext()!!){
                 val dataText=cursor?.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_TITLE))
+                dataList.add(dataText.toString())
             }
         }
         return dataList
