@@ -1,5 +1,5 @@
 package com.example.lessonsqllite.constance
 
-class Constance {
-
+object Constance {
+    const val IMAGE_REQUEST_CODE = 10
 }

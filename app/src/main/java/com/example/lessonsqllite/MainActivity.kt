@@ -3,7 +3,9 @@ package com.example.lessonsqllite
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lessonsqllite.constance.Constance
 import com.example.lessonsqllite.databinding.ActivityMainBinding
 import com.example.lessonsqllite.db.MyDbManager
 
@@ -17,6 +19,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        myDbManager.closeDB()
+    }
 
     override fun onResume() {
         super.onResume()
@@ -27,14 +33,9 @@ class MainActivity : AppCompatActivity() {
         val i = Intent(this, EditActivity::class.java)
         startActivity(i)
     }
-    fun onClickChooseImage(view: View) {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type="image/*"
-    }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        myDbManager.closeDB()
-    }
+
+
+
 
 }
