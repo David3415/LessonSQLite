@@ -20,12 +20,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        myDbManager.closeDB()
+        myDbManager.openDb()
     }
 
     fun onClickNew(view: View) {
         val i = Intent(this, EditActivity::class.java)
         startActivity(i)
+    }
+    fun onClickChooseImage(view: View) {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type="image/*"
     }
 
     override fun onDestroy() {
