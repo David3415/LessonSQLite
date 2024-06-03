@@ -4,7 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.transition.Visibility
 
 
 class EditActivity : AppCompatActivity() {
@@ -16,6 +17,11 @@ class EditActivity : AppCompatActivity() {
     }
 
     fun onClickAddImage(view: View) {
-        mainI
+        var mainImageLayout: ConstraintLayout = findViewById(R.id.mainImageLayout);
+        mainImageLayout.visibility = View.VISIBLE
+    }
+    fun onClickDeleteImage(view: View) {
+        var mainImageLayout: ConstraintLayout = findViewById(R.id.mainImageLayout);
+        mainImageLayout.visibility = View.GONE
     }
 }
