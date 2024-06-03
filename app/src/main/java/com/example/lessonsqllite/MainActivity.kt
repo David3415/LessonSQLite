@@ -17,13 +17,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    fun onClickSave(view: View) {
-        myDbManager.openDb()
-        myDbManager.insertToDb(binding.edTitle.text.toString(), binding.edContent.text.toString())
-        val dataList = myDbManager.readDbData()
-        for (item in dataList) {
-            binding.tvTest.append(item)
-            binding.tvTest.append("\n")
-        }
+    override fun onResume() {
+        super.onResume()
+        myDbManager.closeDB()
     }
+
+    fun onClickNew(view: View) {
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        myDbManager.closeDB()
+    }
+
 }

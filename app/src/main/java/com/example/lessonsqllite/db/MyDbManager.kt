@@ -31,4 +31,7 @@ class MyDbManager(context: Context) {
         }
         return dataList
     }
+    fun closeDB(){
+
+    }
 }
