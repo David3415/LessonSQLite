@@ -1,5 +1,6 @@
 package com.example.lessonsqllite
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -23,7 +24,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClickNew(view: View) {
-
+        val i = Intent(this, EditActivity::class.java)
+        startActivity(i)
     }
 
     override fun onDestroy() {
