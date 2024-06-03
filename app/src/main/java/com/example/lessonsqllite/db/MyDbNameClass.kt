@@ -3,7 +3,7 @@ package com.example.lessonsqllite.db
 import android.provider.BaseColumns
 
 object MyDbNameClass {
-    const val TABLE_NAME = "my_table"
+    const val TABLE_NAME = "entry"
     const val COLUMN_NAME_TITLE = "title"
     const val COLUMN_NAME_CONTENT = "content"
 
