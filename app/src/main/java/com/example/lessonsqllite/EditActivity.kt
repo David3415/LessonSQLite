@@ -63,10 +63,10 @@ class EditActivity : AppCompatActivity() {
     fun onClickSave(view: View) {
         val tmp: TextView = findViewById(R.id.edDescription)
         val tmp1: TextView = findViewById(R.id.edTitle)
-        val myTitle = tmp.text.toString()
-        val myDesk = tmp1.text.toString()
+        val myTitle = tmp1.text.toString()
+        val myDesk = tmp.text.toString()
         if (myTitle != "" && myDesk != "") {
-
+            myDbManager.insertToDb(myTitle,myDesk,tempImageUri)
         }
 
     }
