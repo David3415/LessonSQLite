@@ -8,7 +8,7 @@ class MyDbManager(context: Context) {
     val myDbHelper = MyDbHelper(context)
     var db: SQLiteDatabase? = null
     fun openDb() {
-        db = myDbHelper.writableDatabase
+        db = myDbHelper.writableDatabase//Create and/or open a database
     }
 
     fun insertToDb(title: String, content: String,uri:String) {
@@ -33,6 +33,6 @@ class MyDbManager(context: Context) {
         return dataList
     }
     fun closeDB(){
-
+        myDbHelper.close()
     }
 }

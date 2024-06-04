@@ -25,6 +25,7 @@ class EditActivity : AppCompatActivity() {
 
     }
 
+    ////---------------DB-------------------------------
     override fun onResume() {
         super.onResume()
         myDbManager.openDb()
@@ -34,6 +35,20 @@ class EditActivity : AppCompatActivity() {
         super.onDestroy()
         myDbManager.closeDB()
     }
+
+    fun onClickSave(view: View) {
+        val tmp: TextView = findViewById(R.id.edDescription)
+        val tmp1: TextView = findViewById(R.id.edTitle)
+        val myTitle = tmp1.text.toString()
+        val myDesk = tmp.text.toString()
+        if (myTitle != "" && myDesk != "") {
+            myDbManager.insertToDb(myTitle, myDesk, tempImageUri)
+        }
+
+    }
+
+
+   ////////-----------IMAGE-----------------------------
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -58,16 +73,5 @@ class EditActivity : AppCompatActivity() {
     fun onClickDeleteImage(view: View) {
         var mainImageLayout: ConstraintLayout = findViewById(R.id.mainImageLayout);
         mainImageLayout.visibility = View.GONE
-    }
-
-    fun onClickSave(view: View) {
-        val tmp: TextView = findViewById(R.id.edDescription)
-        val tmp1: TextView = findViewById(R.id.edTitle)
-        val myTitle = tmp1.text.toString()
-        val myDesk = tmp.text.toString()
-        if (myTitle != "" && myDesk != "") {
-            myDbManager.insertToDb(myTitle,myDesk,tempImageUri)
-        }
-
     }
 }
