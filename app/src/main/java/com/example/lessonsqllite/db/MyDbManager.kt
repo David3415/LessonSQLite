@@ -11,7 +11,7 @@ class MyDbManager(context: Context) {
         db = myDbHelper.writableDatabase
     }
 
-    fun insertToDb(title: String, content: String,uri:String) {
+    fun insertToDb(title: String, content: String, uri: String) {
         val values = ContentValues().apply {
             put(MyDbNameClass.COLUMN_NAME_TITLE, title)
             put(MyDbNameClass.COLUMN_NAME_CONTENT, content)
@@ -21,18 +21,21 @@ class MyDbManager(context: Context) {
     }
 
     fun readDbData(): ArrayList<String> {
-        val dataList= ArrayList<String>()
+        val dataList = ArrayList<String>()
         val cursor = db?.query(MyDbNameClass.TABLE_NAME, null, null, null, null, null, null)
 
-        with(cursor){
-            while(this?.moveToNext()!!){
-                val dataText=cursor?.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_TITLE))
+        with(cursor) {
+            while (this?.moveToNext()!!) {
+                val dataText =
+                    cursor?.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_TITLE))
                 dataList.add(dataText.toString())
             }
         }
+        cursor?.close()
         return dataList
     }
-    fun closeDB(){
 
+    fun closeDB() {
+        myDbHelper.close()
     }
 }
