@@ -14,7 +14,6 @@ import com.example.lessonsqllite.constance.Constance
 import com.example.lessonsqllite.databinding.ActivityMainBinding
 import com.example.lessonsqllite.db.MyDbManager
 
-
 class EditActivity : AppCompatActivity() {
     var tempImageUri = "empty"
     val myDbManager = MyDbManager(this)
@@ -34,7 +33,8 @@ class EditActivity : AppCompatActivity() {
         super.onDestroy()
         myDbManager.closeDB()
     }
-////////-----------------------------
+
+    ////////-----------------------------
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK && requestCode == Constance.IMAGE_REQUEST_CODE) {
@@ -45,7 +45,8 @@ class EditActivity : AppCompatActivity() {
     }
 
     fun onClickChooseImage(view: View) {
-        val intent = Intent(Intent.ACTION_PICK)
+        // val intent = Intent(Intent.ACTION_PICK)
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "image/*"
         startActivityForResult(intent, Constance.IMAGE_REQUEST_CODE)
     }
@@ -68,6 +69,5 @@ class EditActivity : AppCompatActivity() {
         if (myTitle != "" && myDesk != "") {
 
         }
-
     }
 }
