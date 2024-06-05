@@ -4,17 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.os.persistableBundleOf
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.lessonsqllite.R
 
 class MyAdapter(listMain: ArrayList<String>) : RecyclerView.Adapter<MyAdapter.MyHolder>() {
-    val listArray = listMain
+    var listArray = listMain//// это адаптер
 
     class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
-
+        val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)////это rc_item
         fun setData(title: String) {
             tvTitle.text = title
         }
@@ -33,7 +30,7 @@ class MyAdapter(listMain: ArrayList<String>) : RecyclerView.Adapter<MyAdapter.My
         holder.setData(listArray.get(position))
     }
 
-    fun updateAdaprer(listItems: List<String>) {
+    fun updateAdapter(listItems: List<String>) {
         listArray.clear()
         listArray.addAll(listItems)
         notifyDataSetChanged()

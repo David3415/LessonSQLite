@@ -34,7 +34,7 @@ class EditActivity : AppCompatActivity() {
         super.onDestroy()
         myDbManager.closeDB()
     }
-
+////////-----------------------------
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK && requestCode == Constance.IMAGE_REQUEST_CODE) {

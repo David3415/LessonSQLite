@@ -2,6 +2,7 @@ package com.example.lessonsqllite
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         binding.rcView.adapter = myAdapter
     }
     fun fillAdapter(){
-        myAdapter.updateAdaprer(myDbManager.readDbData())
+        myAdapter.updateAdapter(myDbManager.readDbData())
+        Log.e("MyLog","aaaaaa")
     }
 }

@@ -21,7 +21,7 @@ class MyDbManager(context: Context) {
     }
 
     fun readDbData(): ArrayList<String> {
-        val dataList = ArrayList<String>()
+        val dataList = ArrayList<String>()//лист из базы
         val cursor = db?.query(MyDbNameClass.TABLE_NAME, null, null, null, null, null, null)
 
         with(cursor) {
