@@ -24,6 +24,7 @@
         android:id="@+id/tvNoElements"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         android:text="Empty"
         android:textColor="#E8E3E3"
         android:textSize="18dp"
