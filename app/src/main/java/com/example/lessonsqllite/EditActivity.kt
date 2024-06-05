@@ -67,7 +67,7 @@ class EditActivity : AppCompatActivity() {
         val myTitle = tmp.text.toString()
         val myDesk = tmp1.text.toString()
         if (myTitle != "" && myDesk != "") {
-
+            myDbManager.insertToDb(myTitle, myDesk, tempImageUri)
         }
     }
 }
