@@ -24,14 +24,12 @@ class MyDbManager(context: Context) {
         val dataList = ArrayList<String>()//лист из базы
         val cursor = db?.query(MyDbNameClass.TABLE_NAME, null, null, null, null, null, null)
 
-        with(cursor) {
-            while (this?.moveToNext()!!) {
-                val dataText =
-                    cursor?.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_TITLE))
-                dataList.add(dataText.toString())
-            }
+        while (cursor?.moveToNext()!!) {
+            val dataText =
+                cursor.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_TITLE))
+            dataList.add(dataText.toString())
         }
-        cursor?.close()
+        cursor.close()
         return dataList
     }
 
