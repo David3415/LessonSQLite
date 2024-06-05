@@ -11,18 +11,22 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.transition.Visibility
 import com.example.lessonsqllite.constance.Constance
+import com.example.lessonsqllite.constance.MyIntentConstances
+import com.example.lessonsqllite.databinding.ActivityEditBinding
 import com.example.lessonsqllite.databinding.ActivityMainBinding
 import com.example.lessonsqllite.db.MyDbManager
 
 
 class EditActivity : AppCompatActivity() {
+    lateinit var binding: ActivityEditBinding
     var tempImageUri = "empty"
     val myDbManager = MyDbManager(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_edit)
-
+        binding = ActivityEditBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        getMyIntents()
     }
 
     override fun onResume() {
@@ -46,9 +50,11 @@ class EditActivity : AppCompatActivity() {
     }
 
     fun onClickChooseImage(view: View) {
-       // val intent = Intent(Intent.ACTION_PICK)
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        // val intent = Intent(Intent.ACTION_PICK)
+        //val intent = Intent(Intent.ACTION_GET_CONTENT)
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.type = "image/*"
+        intent.flags=Intent.FLAG_GRANT_READ_URI_PERMISSION
         startActivityForResult(intent, Constance.IMAGE_REQUEST_CODE)
     }
 
@@ -72,4 +78,19 @@ class EditActivity : AppCompatActivity() {
         }
 
     }
+
+    fun getMyIntents() {
+        val i = intent
+        if (i != null) {
+            if (i.getStringExtra(MyIntentConstances.I_TITLE_KEY) != "null") {
+                binding.edTitle.setText(i.getStringExtra(MyIntentConstances.I_TITLE_KEY))
+                binding.edDescription.setText(i.getStringExtra(MyIntentConstances.I_DESK_KEY))
+                if(i.getStringExtra(MyIntentConstances.I_URI_KEY) != "empty"){
+
+                }
+            }
+
+        }
+    }
+
 }
