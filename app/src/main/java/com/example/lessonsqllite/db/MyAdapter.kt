@@ -1,25 +1,40 @@
 package com.example.lessonsqllite.db
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lessonsqllite.EditActivity
 import com.example.lessonsqllite.R
+import com.example.lessonsqllite.constance.MyIntentConstances
 
-class MyAdapter(listMain: ArrayList<String>) : RecyclerView.Adapter<MyAdapter.MyHolder>() {
+class MyAdapter(listMain: ArrayList<ListItem>, contextM: Context) :
+    RecyclerView.Adapter<MyAdapter.MyHolder>() {
     var listArray = listMain//// это адаптер
+    var context = contextM//// это адаптер
 
-    class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class MyHolder(itemView: View, contextV: Context) : RecyclerView.ViewHolder(itemView) {
         val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)////это rc_item
-        fun setData(title: String) {
-            tvTitle.text = title
+        val context = contextV
+        fun setData(item: ListItem) {
+            tvTitle.text = item.title
+            itemView.setOnClickListener {
+                val intent = Intent(context, EditActivity::class.java).apply {
+                    putExtra(MyIntentConstances.I_TITLE_KEY,item.title)
+                    putExtra(MyIntentConstances.I_DESK_KEY,item.desc)
+                    putExtra(MyIntentConstances.I_URI_KEY,item.uri)
+                }
+                context.startActivity(intent)
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return MyHolder(inflater.inflate(R.layout.rc_item, parent, false))
+        return MyHolder(inflater.inflate(R.layout.rc_item, parent, false), context)
     }
 
     override fun getItemCount(): Int {
@@ -30,7 +45,7 @@ class MyAdapter(listMain: ArrayList<String>) : RecyclerView.Adapter<MyAdapter.My
         holder.setData(listArray.get(position))
     }
 
-    fun updateAdapter(listItems: List<String>) {
+    fun updateAdapter(listItems: List<ListItem>) {
         listArray.clear()
         listArray.addAll(listItems)
         notifyDataSetChanged()

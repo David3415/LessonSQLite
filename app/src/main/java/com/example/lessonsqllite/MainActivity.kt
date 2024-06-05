@@ -15,7 +15,7 @@ import com.example.lessonsqllite.db.MyDbManager
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     val myDbManager = MyDbManager(this)
-    val myAdapter = MyAdapter(ArrayList())
+    val myAdapter = MyAdapter(ArrayList(),this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
