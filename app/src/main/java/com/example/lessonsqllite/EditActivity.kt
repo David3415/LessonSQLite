@@ -46,6 +46,9 @@ class EditActivity : AppCompatActivity() {
             val imMainImage: ImageView = findViewById(R.id.imMainImage)
             imMainImage.setImageURI(data?.data)
             tempImageUri = data?.data.toString()
+            contentResolver.takePersistableUriPermission(
+                data?.data!!,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
     }
 
@@ -54,7 +57,7 @@ class EditActivity : AppCompatActivity() {
         //val intent = Intent(Intent.ACTION_GET_CONTENT)
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.type = "image/*"
-        intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+            // intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
         startActivityForResult(intent, Constance.IMAGE_REQUEST_CODE)
     }
 
