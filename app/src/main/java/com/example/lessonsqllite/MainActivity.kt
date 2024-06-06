@@ -45,7 +45,8 @@ class MainActivity : AppCompatActivity() {
         binding.rcView.adapter = myAdapter
     }
     fun fillAdapter(){
-        myAdapter.updateAdapter(myDbManager.readDbData())
-        Log.e("MyLog","aaaaaa")
+        val list=myDbManager.readDbData()
+        myAdapter.updateAdapter(list)
+        if(list.size>0)binding.tvNoElements.visibility=View.GONE
     }
 }

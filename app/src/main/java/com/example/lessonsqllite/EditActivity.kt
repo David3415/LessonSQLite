@@ -2,6 +2,7 @@ package com.example.lessonsqllite
 
 import android.content.Intent
 import android.media.Image
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -54,7 +55,7 @@ class EditActivity : AppCompatActivity() {
         //val intent = Intent(Intent.ACTION_GET_CONTENT)
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.type = "image/*"
-        intent.flags=Intent.FLAG_GRANT_READ_URI_PERMISSION
+        intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
         startActivityForResult(intent, Constance.IMAGE_REQUEST_CODE)
     }
 
@@ -76,21 +77,25 @@ class EditActivity : AppCompatActivity() {
         if (myTitle != "" && myDesk != "") {
             myDbManager.insertToDb(myTitle, myDesk, tempImageUri)
         }
-
+        finish()
     }
 
     fun getMyIntents() {
         val i = intent
         if (i != null) {
-            if (i.getStringExtra(MyIntentConstances.I_TITLE_KEY) != "null") {
+            if (i.getStringExtra(MyIntentConstances.I_TITLE_KEY) != null) {
+                binding.fbAddImage.visibility = View.GONE
                 binding.edTitle.setText(i.getStringExtra(MyIntentConstances.I_TITLE_KEY))
                 binding.edDescription.setText(i.getStringExtra(MyIntentConstances.I_DESK_KEY))
-                if(i.getStringExtra(MyIntentConstances.I_URI_KEY) != "empty"){
+                if (i.getStringExtra(MyIntentConstances.I_URI_KEY) != "empty") {
+                    binding.mainImageLayout.visibility = View.VISIBLE
+                    binding.imMainImage.setImageURI(Uri.parse(i.getStringExtra(MyIntentConstances.I_URI_KEY)))
+
+                    binding.inButtImgDelete.visibility=View.GONE
+                    binding.inButtImgEdit.visibility=View.GONE
 
                 }
             }
-
         }
     }
-
 }
