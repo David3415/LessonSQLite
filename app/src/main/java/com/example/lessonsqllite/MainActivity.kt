@@ -6,7 +6,9 @@ import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.lessonsqllite.constance.Constance
 import com.example.lessonsqllite.databinding.ActivityMainBinding
 import com.example.lessonsqllite.db.MyAdapter
@@ -15,7 +17,7 @@ import com.example.lessonsqllite.db.MyDbManager
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     val myDbManager = MyDbManager(this)
-    val myAdapter = MyAdapter(ArrayList(),this)
+    val myAdapter = MyAdapter(ArrayList(), this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,9 +46,26 @@ class MainActivity : AppCompatActivity() {
         binding.rcView.layoutManager = LinearLayoutManager(this)
         binding.rcView.adapter = myAdapter
     }
-    fun fillAdapter(){
-        val list=myDbManager.readDbData()
+
+    fun fillAdapter() {
+        val list = myDbManager.readDbData()
         myAdapter.updateAdapter(list)
-        if(list.size>0)binding.tvNoElements.visibility=View.GONE
+        if (list.size > 0) binding.tvNoElements.visibility = View.GONE
+    }
+
+    private fun getSwapMg(): ItemTouchHelper {
+        return ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                TODO("Not yet implemented")
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                TODO("Not yet implemented")
+            }
+        })
     }
 }
