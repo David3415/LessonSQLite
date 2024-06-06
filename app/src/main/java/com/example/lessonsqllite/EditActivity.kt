@@ -14,7 +14,6 @@ import androidx.transition.Visibility
 import com.example.lessonsqllite.constance.Constance
 import com.example.lessonsqllite.constance.MyIntentConstances
 import com.example.lessonsqllite.databinding.ActivityEditBinding
-import com.example.lessonsqllite.databinding.ActivityMainBinding
 import com.example.lessonsqllite.db.MyDbManager
 
 
@@ -93,6 +92,7 @@ class EditActivity : AppCompatActivity() {
 
                     binding.inButtImgDelete.visibility=View.GONE
                     binding.inButtImgEdit.visibility=View.GONE
+                    binding.fbSave.visibility=View.GONE
 
                 }
             }
