@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,8 +25,20 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         init()
+        initSearchView()
     }
+fun initSearchView(){
+    binding.searchView.setOnQueryTextListener(object :android.widget.SearchView.OnQueryTextListener{
+        override fun onQueryTextSubmit(query: String?): Boolean {
+            TODO("Not yet implemented")
+        }
 
+        override fun onQueryTextChange(newText: String?): Boolean {
+            Log.d("MyLog","Mew text: $newText")
+           return true
+        }
+    })
+}
     override fun onDestroy() {
         super.onDestroy()
         myDbManager.closeDB()
