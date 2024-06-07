@@ -1,5 +1,6 @@
 package com.example.lessonsqllite.db
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -29,6 +30,7 @@ class MyDbManager(context: Context) {
         db?.delete(MyDbNameClass.TABLE_NAME, selection, null)
     }
 
+    @SuppressLint("Range")
     fun readDbData(): ArrayList<ListItem> {
         val dataList = ArrayList<ListItem>()//лист из базы
         val cursor = db?.query(MyDbNameClass.TABLE_NAME, null, null, null, null, null, null)
