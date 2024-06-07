@@ -44,6 +44,8 @@ class MainActivity : AppCompatActivity() {
 
     fun init() {
         binding.rcView.layoutManager = LinearLayoutManager(this)
+        val swapHelper = getSwapMg()
+        swapHelper.attachToRecyclerView(binding.rcView)
         binding.rcView.adapter = myAdapter
     }
 
@@ -54,17 +56,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getSwapMg(): ItemTouchHelper {
-        return ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT){
+        return ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder
             ): Boolean {
-                TODO("Not yet implemented")
-            }
+                return false
 
+            }
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                TODO("Not yet implemented")
+                myAdapter.removeItem(viewHolder.adapterPosition, myDbManager)
             }
         })
     }

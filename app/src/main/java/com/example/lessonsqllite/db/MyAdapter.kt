@@ -50,4 +50,10 @@ class MyAdapter(listMain: ArrayList<ListItem>, contextM: Context) :
         listArray.addAll(listItems)
         notifyDataSetChanged()
     }
+    fun removeItem(pos:Int,dbManager: MyDbManager) {
+        dbManager.removeItemFromDb(listArray[pos].id.toString())
+        listArray.removeAt(pos)
+        notifyItemRangeChanged(0,listArray.size)
+        notifyItemRemoved(pos)
+    }
 }
