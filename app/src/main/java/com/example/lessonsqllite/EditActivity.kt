@@ -20,6 +20,8 @@ import com.example.lessonsqllite.db.MyDbManager
 class EditActivity : AppCompatActivity() {
     lateinit var binding: ActivityEditBinding
     var tempImageUri = "empty"
+    var id = 0
+    var isEditState = false
     val myDbManager = MyDbManager(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +50,8 @@ class EditActivity : AppCompatActivity() {
             tempImageUri = data?.data.toString()
             contentResolver.takePersistableUriPermission(
                 data?.data!!,
-                Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                Intent.FLAG_GRANT_READ_URI_PERMISSION
+            )
         }
     }
 
@@ -57,7 +60,7 @@ class EditActivity : AppCompatActivity() {
         //val intent = Intent(Intent.ACTION_GET_CONTENT)
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.type = "image/*"
-            // intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+        // intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
         startActivityForResult(intent, Constance.IMAGE_REQUEST_CODE)
     }
 
@@ -77,9 +80,19 @@ class EditActivity : AppCompatActivity() {
         val myTitle = tmp.text.toString()
         val myDesk = tmp1.text.toString()
         if (myTitle != "" && myDesk != "") {
-            myDbManager.insertToDb(myTitle, myDesk, tempImageUri)
+            if (isEditState) {
+                binding.fbSave.isEnabled = true
+                myDbManager.updateItem(myTitle, myDesk, tempImageUri, id)
+            } else {
+                myDbManager.insertToDb(myTitle, myDesk, tempImageUri)
+            }
         }
         finish()
+    }
+
+    fun onEditEnable(view: View) {
+        binding.edTitle.isEnabled = true
+        binding.edDescription.isEnabled = true
     }
 
     fun getMyIntents() {
@@ -88,14 +101,18 @@ class EditActivity : AppCompatActivity() {
             if (i.getStringExtra(MyIntentConstances.I_TITLE_KEY) != null) {
                 binding.fbAddImage.visibility = View.GONE
                 binding.edTitle.setText(i.getStringExtra(MyIntentConstances.I_TITLE_KEY))
+                isEditState = true
+                binding.edTitle.isEnabled = false
+                binding.edDescription.isEnabled = false
+                id = i.getIntExtra(MyIntentConstances.I_ID_KEY, 0)
                 binding.edDescription.setText(i.getStringExtra(MyIntentConstances.I_DESK_KEY))
                 if (i.getStringExtra(MyIntentConstances.I_URI_KEY) != "empty") {
                     binding.mainImageLayout.visibility = View.VISIBLE
                     binding.imMainImage.setImageURI(Uri.parse(i.getStringExtra(MyIntentConstances.I_URI_KEY)))
 
-                    binding.inButtImgDelete.visibility=View.GONE
-                    binding.inButtImgEdit.visibility=View.GONE
-                    binding.fbSave.visibility=View.GONE
+                    binding.inButtImgDelete.visibility = View.GONE
+                    binding.inButtImgEdit.visibility = View.GONE
+                    // binding.fbSave.visibility = View.GONE
 
                 }
             }

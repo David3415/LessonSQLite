@@ -6,4 +6,7 @@
     <color name="dark_bg">#6C6C6C</color>
     <color name="dark_green">#004400</color>
     <color name="item_bg">#043D6E</color>
+    <color name="edit_text_dark">#384FBD</color>
+    <color name="edit_enable_dark">#C30F4C</color>
+    <color name="edit_text_dark_disabled">#353535</color>
 </resources>
