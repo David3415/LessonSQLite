@@ -71,6 +71,7 @@ class EditActivity : AppCompatActivity() {
     fun onClickDeleteImage(view: View) {
         var mainImageLayout: ConstraintLayout = findViewById(R.id.mainImageLayout);
         mainImageLayout.visibility = View.GONE
+        tempImageUri = "empty"
     }
 
     ////--------------------------------------------------------------------------------------
@@ -94,6 +95,12 @@ class EditActivity : AppCompatActivity() {
         binding.edTitle.isEnabled = true
         binding.edDescription.isEnabled = true
         binding.fbEditEnable.visibility = View.GONE
+        binding.fbAddImage.visibility = View.VISIBLE
+        if (tempImageUri == "empty") return
+        binding.inButtImgEdit.visibility = View.VISIBLE
+        binding.inButtImgDelete.visibility = View.VISIBLE
+
+
     }
 
     fun getMyIntents() {
@@ -111,7 +118,8 @@ class EditActivity : AppCompatActivity() {
                 binding.edDescription.setText(i.getStringExtra(MyIntentConstances.I_DESK_KEY))
                 if (i.getStringExtra(MyIntentConstances.I_URI_KEY) != "empty") {
                     binding.mainImageLayout.visibility = View.VISIBLE
-                    binding.imMainImage.setImageURI(Uri.parse(i.getStringExtra(MyIntentConstances.I_URI_KEY)))
+                    tempImageUri = i.getStringExtra(MyIntentConstances.I_URI_KEY)!!
+                    binding.imMainImage.setImageURI(Uri.parse(tempImageUri))
 
                     binding.inButtImgDelete.visibility = View.GONE
                     binding.inButtImgEdit.visibility = View.GONE

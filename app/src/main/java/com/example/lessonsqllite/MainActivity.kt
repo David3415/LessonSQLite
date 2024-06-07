@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         binding.rcView.layoutManager = LinearLayoutManager(this)
         val swapHelper = getSwapMg()
         swapHelper.attachToRecyclerView(binding.rcView)
-        binding.rcView.adapter = myAdapter
+         binding.rcView.adapter = myAdapter
     }
     fun initSearchView(){
         binding.searchView.setOnQueryTextListener(object :android.widget.SearchView.OnQueryTextListener{
