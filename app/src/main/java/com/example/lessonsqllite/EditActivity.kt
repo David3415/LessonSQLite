@@ -60,7 +60,6 @@ class EditActivity : AppCompatActivity() {
         //val intent = Intent(Intent.ACTION_GET_CONTENT)
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.type = "image/*"
-        // intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
         startActivityForResult(intent, Constance.IMAGE_REQUEST_CODE)
     }
 
@@ -73,7 +72,8 @@ class EditActivity : AppCompatActivity() {
         var mainImageLayout: ConstraintLayout = findViewById(R.id.mainImageLayout);
         mainImageLayout.visibility = View.GONE
     }
-////--------------------------------------------------------------------------------------
+
+    ////--------------------------------------------------------------------------------------
     fun onClickSave(view: View) {
         val tmp1: TextView = findViewById(R.id.edDescription)
         val tmp: TextView = findViewById(R.id.edTitle)
@@ -93,12 +93,12 @@ class EditActivity : AppCompatActivity() {
     fun onEditEnable(view: View) {
         binding.edTitle.isEnabled = true
         binding.edDescription.isEnabled = true
-        binding.fbEditEnable.visibility=View.GONE
+        binding.fbEditEnable.visibility = View.GONE
     }
 
     fun getMyIntents() {
         val i = intent
-        binding.fbEditEnable.visibility=View.GONE
+        binding.fbEditEnable.visibility = View.GONE
         if (i != null) {
             if (i.getStringExtra(MyIntentConstances.I_TITLE_KEY) != null) {
                 binding.fbAddImage.visibility = View.GONE
@@ -106,7 +106,7 @@ class EditActivity : AppCompatActivity() {
                 isEditState = true
                 binding.edTitle.isEnabled = false
                 binding.edDescription.isEnabled = false
-                binding.fbEditEnable.visibility=View.VISIBLE
+                binding.fbEditEnable.visibility = View.VISIBLE
                 id = i.getIntExtra(MyIntentConstances.I_ID_KEY, 0)
                 binding.edDescription.setText(i.getStringExtra(MyIntentConstances.I_DESK_KEY))
                 if (i.getStringExtra(MyIntentConstances.I_URI_KEY) != "empty") {
@@ -115,8 +115,6 @@ class EditActivity : AppCompatActivity() {
 
                     binding.inButtImgDelete.visibility = View.GONE
                     binding.inButtImgEdit.visibility = View.GONE
-                    // binding.fbSave.visibility = View.GONE
-
                 }
             }
         }
