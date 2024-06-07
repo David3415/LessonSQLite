@@ -14,7 +14,7 @@ import com.example.lessonsqllite.constance.MyIntentConstances
 class MyAdapter(listMain: ArrayList<ListItem>, contextM: Context) :
     RecyclerView.Adapter<MyAdapter.MyHolder>() {
     var listArray = listMain//// это адаптер
-    var context = contextM//// это адаптер
+    var context = contextM
 
     class MyHolder(itemView: View, contextV: Context) : RecyclerView.ViewHolder(itemView) {
         val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)////это rc_item

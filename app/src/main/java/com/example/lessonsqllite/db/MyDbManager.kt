@@ -1,5 +1,6 @@
 package com.example.lessonsqllite.db
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -29,9 +30,12 @@ class MyDbManager(context: Context) {
         db?.delete(MyDbNameClass.TABLE_NAME, selection, null)
     }
 
-    fun readDbData(): ArrayList<ListItem> {
+    @SuppressLint("Range")
+    fun readDbData(searchText:String): ArrayList<ListItem> {
         val dataList = ArrayList<ListItem>()//лист из базы
-        val cursor = db?.query(MyDbNameClass.TABLE_NAME, null, null, null, null, null, null)
+        val selection="${MyDbNameClass.COLUMN_NAME_TITLE} LIKE ?"
+        val cursor = db?.query(MyDbNameClass.TABLE_NAME, null, selection,
+            arrayOf("%$searchText%"), null, null, null)
 
         while (cursor?.moveToNext()!!) {
 

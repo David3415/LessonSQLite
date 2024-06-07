@@ -27,18 +27,7 @@ class MainActivity : AppCompatActivity() {
         init()
         initSearchView()
     }
-fun initSearchView(){
-    binding.searchView.setOnQueryTextListener(object :android.widget.SearchView.OnQueryTextListener{
-        override fun onQueryTextSubmit(query: String?): Boolean {
-            TODO("Not yet implemented")
-        }
 
-        override fun onQueryTextChange(newText: String?): Boolean {
-            Log.d("MyLog","Mew text: $newText")
-           return true
-        }
-    })
-}
     override fun onDestroy() {
         super.onDestroy()
         myDbManager.closeDB()
@@ -61,9 +50,22 @@ fun initSearchView(){
         swapHelper.attachToRecyclerView(binding.rcView)
         binding.rcView.adapter = myAdapter
     }
+    fun initSearchView(){
+        binding.searchView.setOnQueryTextListener(object :android.widget.SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
 
+            override fun onQueryTextChange(newText: String?): Boolean {
+                val list = myDbManager.readDbData(newText!!)
+                myAdapter.updateAdapter(list)
+                Log.d("MyLog","Mew text: $newText")
+                return true
+            }
+        })
+    }
     fun fillAdapter() {
-        val list = myDbManager.readDbData()
+        val list = myDbManager.readDbData("")
         myAdapter.updateAdapter(list)
         if (list.size > 0) binding.tvNoElements.visibility = View.GONE
     }

@@ -72,8 +72,8 @@ class EditActivity : AppCompatActivity() {
     }
 
     fun onClickSave(view: View) {
-        val tmp: TextView = findViewById(R.id.edDescription)
-        val tmp1: TextView = findViewById(R.id.edTitle)
+        val tmp1: TextView = findViewById(R.id.edDescription)
+        val tmp: TextView = findViewById(R.id.edTitle)
         val myTitle = tmp.text.toString()
         val myDesk = tmp1.text.toString()
         if (myTitle != "" && myDesk != "") {
