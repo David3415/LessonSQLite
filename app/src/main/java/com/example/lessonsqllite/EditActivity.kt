@@ -16,7 +16,6 @@ import com.example.lessonsqllite.constance.MyIntentConstances
 import com.example.lessonsqllite.databinding.ActivityEditBinding
 import com.example.lessonsqllite.db.MyDbManager
 
-
 class EditActivity : AppCompatActivity() {
     lateinit var binding: ActivityEditBinding
     var tempImageUri = "empty"
@@ -97,6 +96,7 @@ class EditActivity : AppCompatActivity() {
         binding.fbEditEnable.visibility = View.GONE
         binding.fbAddImage.visibility = View.VISIBLE
         if (tempImageUri == "empty") return
+
         binding.inButtImgEdit.visibility = View.VISIBLE
         binding.inButtImgDelete.visibility = View.VISIBLE
 
