@@ -3,6 +3,7 @@ package com.example.lessonsqllite.db
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import android.util.Log
 
 class MyDbManager(context: Context) {
     val myDbHelper = MyDbHelper(context)
@@ -18,6 +19,7 @@ class MyDbManager(context: Context) {
             put(MyDbNameClass.COLUMN_NAME_IMAGE_URI, uri)
         }
         db?.insert(MyDbNameClass.TABLE_NAME, null, values)
+       // Log.d("MyLog",MyDbNameClass.)
     }
 
     fun readDbData(): ArrayList<ListItem> {
