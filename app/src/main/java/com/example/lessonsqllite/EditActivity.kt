@@ -1,6 +1,7 @@
 package com.example.lessonsqllite
 
 import android.content.Intent
+import android.icu.util.Calendar
 import android.media.Image
 import android.net.Uri
 import android.os.Bundle
@@ -15,6 +16,8 @@ import com.example.lessonsqllite.constance.Constance
 import com.example.lessonsqllite.constance.MyIntentConstances
 import com.example.lessonsqllite.databinding.ActivityEditBinding
 import com.example.lessonsqllite.db.MyDbManager
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class EditActivity : AppCompatActivity() {
     lateinit var binding: ActivityEditBinding
@@ -82,9 +85,9 @@ class EditActivity : AppCompatActivity() {
         if (myTitle != "" && myDesk != "") {
             if (isEditState) {
                 binding.fbSave.isEnabled = true
-                myDbManager.updateItem(myTitle, myDesk, tempImageUri, id)
+                myDbManager.updateItem(myTitle, myDesk, tempImageUri, id,getCurrentTime())
             } else {
-                myDbManager.insertToDb(myTitle, myDesk, tempImageUri)
+                myDbManager.insertToDb(myTitle, myDesk, tempImageUri,getCurrentTime())
             }
         }
         finish()
@@ -126,5 +129,13 @@ class EditActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun getCurrentTime(): String {
+        val time = Calendar.getInstance().time
+        val formatter = SimpleDateFormat("dd-MM-yy hh-mm", Locale.getDefault())
+       // val formatter = SimpleDateFormat("dd-MM-yy kk-mm", Locale.getDefault())// 24 часовой формат
+        val fTime=formatter.format(time)
+        return fTime.toString()
     }
 }

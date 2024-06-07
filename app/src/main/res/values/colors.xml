@@ -9,4 +9,5 @@
     <color name="edit_text_dark">#384FBD</color>
     <color name="edit_enable_dark">#C30F4C</color>
     <color name="edit_text_dark_disabled">#353535</color>
+    <color name="time_color">#F6F8F9</color>
 </resources>
