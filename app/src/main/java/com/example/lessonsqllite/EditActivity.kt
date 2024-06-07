@@ -41,7 +41,7 @@ class EditActivity : AppCompatActivity() {
         myDbManager.closeDB()
     }
 
-    ////////-----------------------------
+    ////////----------------------------IMAGE-------------------------
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK && requestCode == Constance.IMAGE_REQUEST_CODE) {
@@ -73,7 +73,7 @@ class EditActivity : AppCompatActivity() {
         var mainImageLayout: ConstraintLayout = findViewById(R.id.mainImageLayout);
         mainImageLayout.visibility = View.GONE
     }
-
+////--------------------------------------------------------------------------------------
     fun onClickSave(view: View) {
         val tmp1: TextView = findViewById(R.id.edDescription)
         val tmp: TextView = findViewById(R.id.edTitle)
@@ -93,10 +93,12 @@ class EditActivity : AppCompatActivity() {
     fun onEditEnable(view: View) {
         binding.edTitle.isEnabled = true
         binding.edDescription.isEnabled = true
+        binding.fbEditEnable.visibility=View.GONE
     }
 
     fun getMyIntents() {
         val i = intent
+        binding.fbEditEnable.visibility=View.GONE
         if (i != null) {
             if (i.getStringExtra(MyIntentConstances.I_TITLE_KEY) != null) {
                 binding.fbAddImage.visibility = View.GONE
@@ -104,6 +106,7 @@ class EditActivity : AppCompatActivity() {
                 isEditState = true
                 binding.edTitle.isEnabled = false
                 binding.edDescription.isEnabled = false
+                binding.fbEditEnable.visibility=View.VISIBLE
                 id = i.getIntExtra(MyIntentConstances.I_ID_KEY, 0)
                 binding.edDescription.setText(i.getStringExtra(MyIntentConstances.I_DESK_KEY))
                 if (i.getStringExtra(MyIntentConstances.I_URI_KEY) != "empty") {
