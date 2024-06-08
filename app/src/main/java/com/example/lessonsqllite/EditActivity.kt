@@ -17,6 +17,10 @@ import com.example.lessonsqllite.constance.Constance
 import com.example.lessonsqllite.constance.MyIntentConstances
 import com.example.lessonsqllite.databinding.ActivityEditBinding
 import com.example.lessonsqllite.db.MyDbManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -78,21 +82,25 @@ class EditActivity : AppCompatActivity() {
     }
 
     ////--------------------------------------------------------------------------------------
+
     fun onClickSave(view: View) {
         val tmp1: TextView = findViewById(R.id.edDescription)
         val tmp: TextView = findViewById(R.id.edTitle)
         val myTitle = tmp.text.toString()
         val myDesk = tmp1.text.toString()
         if (myTitle != "" && myDesk != "") {
-            if (isEditState) {
-                binding.fbSave.isEnabled = true
-                myDbManager.updateItem(myTitle, myDesk, tempImageUri, id, getCurrentTime())
+            CoroutineScope(Dispatchers.Main).launch {
+                if (isEditState) {
+                    binding.fbSave.isEnabled = true
+                    myDbManager.updateItem(myTitle, myDesk, tempImageUri, id, getCurrentTime())
 
-            } else {
-                myDbManager.insertToDb(myTitle, myDesk, tempImageUri, getCurrentTime())
-                Log.d("MyLog","${getCurrentTime()}")
+                } else {
+                    myDbManager.insertToDb(myTitle, myDesk, tempImageUri, getCurrentTime())
+                    Log.d("MyLog", "${getCurrentTime()}")
+                }
             }
         }
+
         finish()
     }
 

@@ -16,13 +16,14 @@ import com.example.lessonsqllite.db.MyAdapter
 import com.example.lessonsqllite.db.MyDbManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     val myDbManager = MyDbManager(this)
     val myAdapter = MyAdapter(ArrayList(), this)
-
+    private var job: Job? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -72,7 +73,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun fillAdapter(newText: String) {
-        CoroutineScope(Dispatchers.Main).launch {
+        job?.cancel()
+        job = CoroutineScope(Dispatchers.Main).launch {
             val list = myDbManager.readDbData(newText)
             myAdapter.updateAdapter(list)
             if (list.size > 0) {
