@@ -25,11 +25,10 @@ class MyAdapter(listMain: ArrayList<ListItem>, contextM: Context) :
             tvTime.text = item.time
             itemView.setOnClickListener {
                 val intent = Intent(context, EditActivity::class.java).apply {
-                    putExtra(MyIntentConstances.I_TITLE_KEY,item.title)
-                    putExtra(MyIntentConstances.I_DESK_KEY,item.desc)
-                    putExtra(MyIntentConstances.I_URI_KEY,item.uri)
-                    //putExtra(MyIntentConstances.I_TIME_KEY,item.time)
-                    putExtra(MyIntentConstances.I_ID_KEY,item.id)
+                    putExtra(MyIntentConstances.I_TITLE_KEY, item.title)
+                    putExtra(MyIntentConstances.I_DESK_KEY, item.desc)
+                    putExtra(MyIntentConstances.I_URI_KEY, item.uri)
+                    putExtra(MyIntentConstances.I_ID_KEY, item.id)
                 }
                 context.startActivity(intent)
             }
@@ -54,10 +53,11 @@ class MyAdapter(listMain: ArrayList<ListItem>, contextM: Context) :
         listArray.addAll(listItems)
         notifyDataSetChanged()
     }
-    fun removeItem(pos:Int,dbManager: MyDbManager) {
+
+    fun removeItem(pos: Int, dbManager: MyDbManager) {
         dbManager.removeItemFromDb(listArray[pos].id.toString())
         listArray.removeAt(pos)
-        notifyItemRangeChanged(0,listArray.size)
+        notifyItemRangeChanged(0, listArray.size)
         notifyItemRemoved(pos)
     }
 }

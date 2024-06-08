@@ -59,9 +59,7 @@ class EditActivity : AppCompatActivity() {
     }
 
     fun onClickChooseImage(view: View) {
-        // val intent = Intent(Intent.ACTION_PICK)
-        //val intent = Intent(Intent.ACTION_GET_CONTENT)
-        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+                val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.type = "image/*"
         startActivityForResult(intent, Constance.IMAGE_REQUEST_CODE)
     }
@@ -90,8 +88,7 @@ class EditActivity : AppCompatActivity() {
 
             } else {
                 myDbManager.insertToDb(myTitle, myDesk, tempImageUri, getCurrentTime())
-                Log.d("MyLog","${getCurrentTime()}")
-            }
+                           }
         }
         finish()
     }
@@ -102,7 +99,6 @@ class EditActivity : AppCompatActivity() {
         binding.fbEditEnable.visibility = View.GONE
         binding.fbAddImage.visibility = View.VISIBLE
         if (tempImageUri == "empty") return
-
         binding.inButtImgEdit.visibility = View.VISIBLE
         binding.inButtImgDelete.visibility = View.VISIBLE
     }
