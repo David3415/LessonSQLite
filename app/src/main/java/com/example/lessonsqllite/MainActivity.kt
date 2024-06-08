@@ -14,6 +14,9 @@ import com.example.lessonsqllite.constance.Constance
 import com.example.lessonsqllite.databinding.ActivityMainBinding
 import com.example.lessonsqllite.db.MyAdapter
 import com.example.lessonsqllite.db.MyDbManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -36,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         myDbManager.openDb()
-        fillAdapter()
+        fillAdapter("")
     }
 
     fun onClickNew(view: View) {
@@ -48,26 +51,36 @@ class MainActivity : AppCompatActivity() {
         binding.rcView.layoutManager = LinearLayoutManager(this)
         val swapHelper = getSwapMg()
         swapHelper.attachToRecyclerView(binding.rcView)
-         binding.rcView.adapter = myAdapter
+        binding.rcView.adapter = myAdapter
     }
-    fun initSearchView(){
-        binding.searchView.setOnQueryTextListener(object :android.widget.SearchView.OnQueryTextListener{
+
+    fun initSearchView() {
+        binding.searchView.setOnQueryTextListener(object :
+            android.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                val list = myDbManager.readDbData(newText!!)
+                /*val list = myDbManager.readDbData(newText!!)
                 myAdapter.updateAdapter(list)
-                Log.d("MyLog","Mew text: $newText")
+                Log.d("MyLog","Mew text: $newText")*/
+                fillAdapter(newText!!)
                 return true
             }
         })
     }
-    fun fillAdapter() {
-        val list = myDbManager.readDbData("")
-        myAdapter.updateAdapter(list)
-        if (list.size > 0) binding.tvNoElements.visibility = View.GONE
+
+    fun fillAdapter(newText: String) {
+        CoroutineScope(Dispatchers.Main).launch {
+            val list = myDbManager.readDbData(newText)
+            myAdapter.updateAdapter(list)
+            if (list.size > 0) {
+                binding.tvNoElements.visibility = View.GONE
+            } else {
+                binding.tvNoElements.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun getSwapMg(): ItemTouchHelper {
@@ -80,6 +93,7 @@ class MainActivity : AppCompatActivity() {
                 return false
 
             }
+
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 myAdapter.removeItem(viewHolder.adapterPosition, myDbManager)
             }
