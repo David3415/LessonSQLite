@@ -5,6 +5,7 @@ import android.icu.util.Calendar
 import android.media.Image
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -85,9 +86,11 @@ class EditActivity : AppCompatActivity() {
         if (myTitle != "" && myDesk != "") {
             if (isEditState) {
                 binding.fbSave.isEnabled = true
-                myDbManager.updateItem(myTitle, myDesk, tempImageUri, id,getCurrentTime())
+                myDbManager.updateItem(myTitle, myDesk, tempImageUri, id, getCurrentTime())
+
             } else {
-                myDbManager.insertToDb(myTitle, myDesk, tempImageUri,getCurrentTime())
+                myDbManager.insertToDb(myTitle, myDesk, tempImageUri, getCurrentTime())
+                Log.d("MyLog","${getCurrentTime()}")
             }
         }
         finish()
@@ -102,8 +105,6 @@ class EditActivity : AppCompatActivity() {
 
         binding.inButtImgEdit.visibility = View.VISIBLE
         binding.inButtImgDelete.visibility = View.VISIBLE
-
-
     }
 
     fun getMyIntents() {
@@ -134,8 +135,8 @@ class EditActivity : AppCompatActivity() {
     private fun getCurrentTime(): String {
         val time = Calendar.getInstance().time
         val formatter = SimpleDateFormat("dd-MM-yy hh-mm", Locale.getDefault())
-       // val formatter = SimpleDateFormat("dd-MM-yy kk-mm", Locale.getDefault())// 24 часовой формат
-        val fTime=formatter.format(time)
+        // val formatter = SimpleDateFormat("dd-MM-yy kk-mm", Locale.getDefault())// 24 часовой формат
+        val fTime = formatter.format(time)
         return fTime.toString()
     }
 }

@@ -58,8 +58,8 @@ class MyDbManager(context: Context) {
             val dataContent =
                 cursor.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_CONTENT))
             val dataUri =
-                cursor.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_TIME))
-            val time = cursor.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_IMAGE_URI))
+                cursor.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_IMAGE_URI))
+            val time = cursor.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_TIME))
             val dataId = cursor.getInt(cursor.getColumnIndex(BaseColumns._ID))
             var item = ListItem()
             item.title = dataTitle
