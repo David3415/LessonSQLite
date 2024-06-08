@@ -1,4 +1,4 @@
-package com.example.lessonsqllite.db
+package com.blocknote.blocknote.db
 
 import android.annotation.SuppressLint
 import android.content.ContentValues

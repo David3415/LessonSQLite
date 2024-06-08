@@ -1,8 +1,7 @@
-package com.example.lessonsqllite
+package com.blocknote.blocknote
 
 import android.content.Intent
 import android.icu.util.Calendar
-import android.media.Image
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -12,15 +11,13 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.transition.Visibility
-import com.example.lessonsqllite.constance.Constance
-import com.example.lessonsqllite.constance.MyIntentConstances
-import com.example.lessonsqllite.databinding.ActivityEditBinding
-import com.example.lessonsqllite.db.MyDbManager
+import com.blocknote.blocknote.constance.Constance
+import com.blocknote.blocknote.constance.MyIntentConstances
+import com.blocknote.blocknote.databinding.ActivityEditBinding
+import com.blocknote.blocknote.db.MyDbManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Locale
 

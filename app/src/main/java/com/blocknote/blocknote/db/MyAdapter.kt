@@ -1,4 +1,4 @@
-package com.example.lessonsqllite.db
+package com.blocknote.blocknote.db
 
 import android.content.Context
 import android.content.Intent
@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.lessonsqllite.EditActivity
-import com.example.lessonsqllite.R
-import com.example.lessonsqllite.constance.MyIntentConstances
+import com.blocknote.blocknote.EditActivity
+import com.blocknote.blocknote.R
+import com.blocknote.blocknote.constance.MyIntentConstances
 
 class MyAdapter(listMain: ArrayList<ListItem>, contextM: Context) :
     RecyclerView.Adapter<MyAdapter.MyHolder>() {

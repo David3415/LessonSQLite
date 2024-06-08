@@ -1,4 +1,4 @@
-package com.example.lessonsqllite.constance
+package com.blocknote.blocknote.constance
 
 object Constance {
     const val IMAGE_REQUEST_CODE = 10

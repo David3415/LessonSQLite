@@ -1,19 +1,15 @@
-package com.example.lessonsqllite
+package com.blocknote.blocknote
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.lessonsqllite.constance.Constance
-import com.example.lessonsqllite.databinding.ActivityMainBinding
-import com.example.lessonsqllite.db.MyAdapter
-import com.example.lessonsqllite.db.MyDbManager
+import com.blocknote.blocknote.databinding.ActivityMainBinding
+import com.blocknote.blocknote.db.MyAdapter
+import com.blocknote.blocknote.db.MyDbManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

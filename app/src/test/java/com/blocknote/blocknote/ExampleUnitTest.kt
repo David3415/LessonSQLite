@@ -1,4 +1,4 @@
-package com.example.lessonsqllite
+package com.blocknote.blocknote
 
 import org.junit.Test
 

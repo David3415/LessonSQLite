@@ -1,4 +1,4 @@
-package com.example.lessonsqllite.constance
+package com.blocknote.blocknote.constance
 
 object MyIntentConstances {
     const val I_TITLE_KEY = "title_key"

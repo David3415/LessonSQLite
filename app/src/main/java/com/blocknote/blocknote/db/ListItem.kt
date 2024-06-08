@@ -1,4 +1,4 @@
-package com.example.lessonsqllite.db
+package com.blocknote.blocknote.db
 
 class ListItem {
     var title="empty"

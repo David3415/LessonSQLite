@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.lessonsqllite"
+    namespace = "com.blocknote.blocknote"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.lessonsqllite"
+        applicationId = "com.blocknote.blocknote"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

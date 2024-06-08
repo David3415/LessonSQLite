@@ -1,4 +1,4 @@
-package com.example.lessonsqllite.db
+package com.blocknote.blocknote.db
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
