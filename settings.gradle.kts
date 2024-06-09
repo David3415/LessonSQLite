@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "LessonSQLLite"
+rootProject.name = "blocknote"
 include(":app")

@@ -1,17 +1,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.LessonSQLLite" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.blocknote" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:windowFullscreen">true</item>
     </style>
 
-    <style name="Base.Theme.LessonSQLLite2" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <!--<style name="Base.Theme.blocknote" parent="Theme.Material3.DayNight.NoActionBar">
+        &lt;!&ndash; Customize your light theme here. &ndash;&gt;
+        &lt;!&ndash; <item name="colorPrimary">@color/my_light_primary</item> &ndash;&gt;
         <item name="android:windowFullscreen">true</item>
 
-    </style>
+    </style>-->
 
-    <style name="Theme.LessonSQLLite" parent="Base.Theme.LessonSQLLite" />
+    <style name="Theme.blocknote" parent="Base.Theme.blocknote" />
 </resources>

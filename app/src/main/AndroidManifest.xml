@@ -10,10 +10,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LessonSQLLite"
+        android:theme="@style/Theme.blocknote"
         tools:targetApi="31">
         <activity
-            android:name=".EditActivity" android:theme="@style/Base.Theme.LessonSQLLite2"
+            android:name=".EditActivity" android:theme="@style/Base.Theme.blocknote"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
