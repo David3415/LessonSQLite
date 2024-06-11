@@ -1,9 +1,9 @@
 package com.blocknote.blocknote.db
 
 class ListItem {
-    var title="empty"
-    var desc="empty"
-    var uri="empty"
-    var time=""
-    var id=0
+    var title = "empty"
+    var desc = "empty"
+    var uri = "empty"
+    var time = ""
+    var id = 0
 }

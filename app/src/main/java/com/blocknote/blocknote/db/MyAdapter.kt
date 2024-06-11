@@ -11,8 +11,7 @@ import com.blocknote.blocknote.EditActivity
 import com.blocknote.blocknote.R
 import com.blocknote.blocknote.constance.MyIntentConstances
 
-class MyAdapter(listMain: ArrayList<ListItem>, contextM: Context) :
-    RecyclerView.Adapter<MyAdapter.MyHolder>() {
+class MyAdapter(listMain: ArrayList<ListItem>, contextM: Context) : RecyclerView.Adapter<MyAdapter.MyHolder>() {
     var listArray = listMain//// это адаптер
     var context = contextM
 
