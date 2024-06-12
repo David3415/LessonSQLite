@@ -14,12 +14,12 @@ import com.blocknote.blocknote.constance.MyIntentConstances
 class MyAdapter(listMain: ArrayList<ListItem>, contextM: Context) : RecyclerView.Adapter<MyAdapter.MyHolder>() {
     var listArray = listMain//// это адаптер
     var context = contextM
-
     class MyHolder(itemView: View, contextV: Context) : RecyclerView.ViewHolder(itemView) {
         val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)////это rc_item
         val tvTime: TextView = itemView.findViewById(R.id.tvTime)////это rc_item
         val context = contextV
         fun setData(item: ListItem) {
+
             tvTitle.text = item.title
             tvTime.text = item.time
             itemView.setOnClickListener {
