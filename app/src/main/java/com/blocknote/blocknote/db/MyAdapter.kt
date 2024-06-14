@@ -12,8 +12,10 @@ import com.blocknote.blocknote.R
 import com.blocknote.blocknote.constance.MyIntentConstances
 
 class MyAdapter(listMain: ArrayList<ListItem>, contextM: Context) : RecyclerView.Adapter<MyAdapter.MyHolder>() {
-    var listArray = listMain//// это адаптер
+    var listArray = listMain//// это  ArrayList<ListItem> со всеми строками RV
     var context = contextM
+
+    ////   MyHolder - это тип шаблона адаптера - <MyAdapter.MyHolder>, т.е. у  MyAdapter тип - MyHolder
     class MyHolder(itemView: View, contextV: Context) : RecyclerView.ViewHolder(itemView) {
         val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)////это rc_item
         val tvTime: TextView = itemView.findViewById(R.id.tvTime)////это rc_item
@@ -21,17 +23,14 @@ class MyAdapter(listMain: ArrayList<ListItem>, contextM: Context) : RecyclerView
         fun setData(item: ListItem) {
 
             tvTitle.text = item.title
-            tvTime.text = item.time
-            itemView.setOnClickListener {
+            tvTime.text = item.desc
+            /*itemView.setOnClickListener {
                 val intent = Intent(context, EditActivity::class.java).apply {
                     putExtra(MyIntentConstances.I_TITLE_KEY,item.title)
                     putExtra(MyIntentConstances.I_DESK_KEY,item.desc)
-                    putExtra(MyIntentConstances.I_URI_KEY,item.uri)
-                    //putExtra(MyIntentConstances.I_TIME_KEY,item.time)
-                    putExtra(MyIntentConstances.I_ID_KEY,item.id)
-                }
+                                    }
                 context.startActivity(intent)
-            }
+            }*/
         }
     }
 
@@ -52,11 +51,5 @@ class MyAdapter(listMain: ArrayList<ListItem>, contextM: Context) : RecyclerView
         listArray.clear()
         listArray.addAll(listItems)
         notifyDataSetChanged()
-    }
-    fun removeItem(pos:Int,dbManager: MyDbManager) {
-        dbManager.removeItemFromDb(listArray[pos].id.toString())
-        listArray.removeAt(pos)
-        notifyItemRangeChanged(0,listArray.size)
-        notifyItemRemoved(pos)
     }
 }

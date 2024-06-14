@@ -16,70 +16,37 @@ class MyDbManager(context: Context) {
         db = myDbHelper.writableDatabase
     }
 
-    suspend fun insertToDb(title: String, content: String, uri: String, time: String)= withContext(Dispatchers.IO) {
-        val values = ContentValues().apply {
-            put(MyDbNameClass.COLUMN_NAME_TITLE, title)
-            put(MyDbNameClass.COLUMN_NAME_CONTENT, content)
-            put(MyDbNameClass.COLUMN_NAME_IMAGE_URI, uri)
-            put(MyDbNameClass.COLUMN_NAME_TIME, time)
+    fun insertToDb(title: String, content: String) {
 
-        }
-        db?.insert(MyDbNameClass.TABLE_NAME, null, values)
-    }
-
-    suspend fun updateItem(title: String, content: String, uri: String, id: Int, time: String) =
-        withContext(Dispatchers.IO)
-        {
-            val selection = BaseColumns._ID + "=$id"
             val values = ContentValues().apply {
                 put(MyDbNameClass.COLUMN_NAME_TITLE, title)
                 put(MyDbNameClass.COLUMN_NAME_CONTENT, content)
-                put(MyDbNameClass.COLUMN_NAME_IMAGE_URI, uri)
-                put(MyDbNameClass.COLUMN_NAME_TIME, time)
-
-            }
-            db?.update(MyDbNameClass.TABLE_NAME, values, selection, null)
+                           }
+            db?.insert(MyDbNameClass.TABLE_NAME, null, values)
         }
 
-    fun removeItemFromDb(id: String) {
-        val selection = BaseColumns._ID + "=$id"
-        Log.d("MyLog", selection)
-        db?.delete(MyDbNameClass.TABLE_NAME, selection, null)
-    }
 
-    @SuppressLint("Range")
-    suspend fun readDbData(searchText: String): ArrayList<ListItem> = withContext(Dispatchers.IO)
+     fun readDbData(): ArrayList<ListItem>
     {
         val dataList = ArrayList<ListItem>()//лист из базы
-        val selection = "${MyDbNameClass.COLUMN_NAME_TITLE} LIKE ?"
+
         val cursor = db?.query(
-            MyDbNameClass.TABLE_NAME, null, selection,
-            arrayOf("%$searchText%"), null, null, null
+            MyDbNameClass.TABLE_NAME, null, null,
+            null, null, null, null
         )
 
         while (cursor?.moveToNext()!!) {
 
             var dataTitle = cursor.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_TITLE))
-            val dataContent =
-                cursor.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_CONTENT))
-            val dataUri =
-                cursor.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_IMAGE_URI))
-            val time = cursor.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_TIME))
-            val dataId = cursor.getInt(cursor.getColumnIndex(BaseColumns._ID))
+            val dataContent = cursor.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_CONTENT))
+
             var item = ListItem()
             item.title = dataTitle
             item.desc = dataContent
-            item.uri = dataUri
-            item.time = time
-            item.id = dataId
 
             dataList.add(item)
         }
         cursor.close()
-        return@withContext dataList
-    }
-
-    fun closeDB() {
-        myDbHelper.close()
+        return dataList
     }
 }
