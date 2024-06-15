@@ -112,10 +112,12 @@ class EditActivity : AppCompatActivity() {
         binding.inButtImgDelete.visibility = View.VISIBLE
     }
 
+    ////----------------------------------достаём созранение из БД по клику на поле
     fun getMyIntents() {
         val i = intent
         binding.fbEditEnable.visibility = View.GONE
         if (i != null) {
+            Log.d("MyLog","${i.getStringExtra(MyIntentConstances.I_TITLE_KEY)}")
             if (i.getStringExtra(MyIntentConstances.I_TITLE_KEY) != null) {
                 binding.fbAddImage.visibility = View.GONE
                 binding.edTitle.setText(i.getStringExtra(MyIntentConstances.I_TITLE_KEY))
